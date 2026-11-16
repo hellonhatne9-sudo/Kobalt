@@ -1,52 +1,34 @@
-# KOBALT (Match) - Gun & Weapon System
+# KOBALT (Match) - AntiCheat System
 
-Thư mục này chứa toàn bộ các script và module cấu thành **Hệ thống Súng & Vũ khí (Gun & Weapon System)** được trích xuất từ **KOBALT (Match)_116409709288055**.
-
----
-
-## 1. Core Weapon Controller & Combat (Điều khiển & Cơ chế Bắn)
-
-| File | Kích thước | Vai trò & Chức năng |
-|---|---|---|
-| `WeaponController.ModuleScript.lua` | 85.6 KB | Controller súng trung tâm: Xử lý cơ chế khai hỏa (fire), nạp đạn (reload), ngắm (ADS), chuyển chế độ bắn (semi/burst/auto), tính độ giật (recoil), cự ly ngắm (zeroing), kiểm tra đạn và bắn phía client. |
-| `Ballistics.ModuleScript.lua` | 6.1 KB | Tính toán vật lý đường đạn: Vận tốc đầu nòng, độ rơi trọng lực (gravity drop), ma sát/cản gió (drag) theo thời gian thực. |
-| `BallisticsFx.ModuleScript.lua` | 117.1 KB | Hiệu ứng đạn bay: Vẽ tia đạn (tracers), âm thanh đạn rít qua người (whiz/flyby), hiệu ứng va chạm bề mặt (surface impact sparks/dust). |
-| `Hitbox.ModuleScript.lua` | 5.4 KB | Hệ thống Hitbox: Xác định vị trí trúng đạn trên cơ thể (Head, Neck, UpperChest, Stomach, Limbs) và kiểm tra raycast hợp lệ. |
-| `WeaponRig.ModuleScript.lua` | 24.9 KB | Ghép mô hình vũ khí, socket phụ kiện súng, liên kết các khớp xương (rigging/attachment sockets). |
-| `WeaponStats.ModuleScript.lua` | 8.4 KB | Tính toán chỉ số súng: Sát thương, tốc độ bắn (RPM), độ giật, độ tản mát (spread) khi trang bị phụ kiện. |
-| `VehicleFire.ModuleScript.lua` | 9.5 KB | Cơ chế súng/vũ khí gắn trên xe cơ giới. |
-| `FlareSky.ModuleScript.lua` | 1.2 KB | Cơ chế súng bắn pháo sáng gọi hòm thính hoặc hiệu ứng bầu trời. |
-| `MeleeController.ModuleScript.lua` | 9.2 KB | Điều khiển vũ khí cận chiến (dao/xẻng/gậy). |
-| `AimAssist.ModuleScript.lua` | 5.5 KB | Hệ thống hỗ trợ bám mục tiêu khi ngắm (Aim Assist cho mobile/gamepad). |
-| `DamageFx.ModuleScript.lua` | 15.0 KB | Hiệu ứng trúng sát thương, tia máu, âm thanh hit sound, hit marker. |
-| `ShellFx.ModuleScript.lua` | 19.7 KB | Hiệu ứng văng vỏ đạn (casing ejection) ra khỏi buồng đạn khi bắn. |
+Thư mục này chứa toàn bộ các script và module cấu thành **Hệ thống Chống Gian lận & Giám sát (AntiCheat & Security System)** được trích xuất từ **KOBALT (Match)_116409709288055**.
 
 ---
 
-## 2. Viewmodel & First-Person Handling (Góc nhìn thứ nhất & Animation)
+## Danh sách các Module AntiCheat
 
 | File | Kích thước | Vai trò & Chức năng |
 |---|---|---|
-| `ViewmodelController.ModuleScript.lua` | 131.2 KB | Quản lý khung nhìn súng thứ nhất (viewmodel), rung lắc khi di chuyển (bobbing/sway), impulse khi giật súng, chuyển đổi trạng thái vũ khí. |
-| `Arms.ModuleScript.lua` | 18.6 KB | Quản lý hai cánh tay nhân vật cầm súng ở góc nhìn thứ nhất. |
-| `Pose.ModuleScript.lua` | 26.8 KB | Tính toán tư thế cầm súng, căn chỉnh mắt vào tâm ngắm (ADS cheek alignment / eye offset). |
-| `Actions.ModuleScript.lua` | 141.7 KB | Xử lý animation chi tiết của hành động súng (rút súng, nạp đạn thường, nạp đạn rỗng, kiểm tra súng). |
-| `Clips.ModuleScript.lua` | 8.9 KB | Quản lý animation tháo/lắp băng đạn và hiển thị băng đạn. |
-| `Reticle.ModuleScript.lua` | 6.3 KB | Hiển thị và xử lý độ nở hồng tâm (reticle bloom / crosshair spread). |
-| `ScopeOverlay.ModuleScript.lua` | 21.7 KB | Lớp phủ kính ngắm quang học (ống ngắm bắn tỉa, red dot / holo optic zoom). |
-| `Props.ModuleScript.lua` | 25.7 KB | Các phụ kiện và vật phẩm đi kèm vũ khí khi cầm trên tay. |
+| `AntiCheat.ModuleScript.lua` | 36.4 KB | **Module AntiCheat Trung Tâm**: Cung cấp giao diện bảng điều khiển, bộ kiểm tra gian lận (Checks), tính năng AutoKick, Ban người chơi (1D, 7D, 30D, PERM), Unban, kiểm tra danh sách vi phạm (`acBan`, `acKick`, `acBanInfo`), truy vấn Admin qua `AdminQuery`. |
+| `AnimGuardController.ModuleScript.lua` | 7.2 KB | **Bảo vệ Trạng thái & Animation (Exploit Guard)**: Theo dõi liên tục nhân vật người chơi trong `workspace.Live`, phát hiện và ngăn chặn các hành vi hack/exploit trạng thái bay (Fly), rơi tự do trái phép (FreeFall), bơi trên cạn, hoặc hồi máu gian lận (Healing animation spoofing). |
+| `Staff.ModuleScript.lua` | 49.4 KB | **Hệ thống Quản trị & Xử lý Vi phạm Staff**: Xử lý các hình thức phạt từ bảng điều khiển anti-cheat (`YOU (anti-cheat panel)`), quản lý danh sách cấm, lưu vết các bản ghi vi phạm trong tháng theo múi giờ địa phương. |
+| `UI_Staff.ModuleScript.lua` | 57.3 KB | **Giao diện Giám sát Gian lận cho Mod/Staff**: Hiển thị bảng theo dõi người chơi, chấm điểm nguy cơ gian lận (`acText`: `anti-cheat clean` hoặc `anti-cheat score/max + lý do nghi vấn`). |
+| `UI_Admin.ModuleScript.lua` | 54.3 KB | **Giao diện Admin Panel**: Nút kích hoạt bảng Anti-cheat (`AntiCheatBtn`), kết nối quyền hạn quản trị viên cấp cao để thực thi các lệnh bảo mật. |
+| `VehicleConfig.ModuleScript.lua` | 13.3 KB | **Cấu hình Anti-Cheat Xe Cộ**: Chứa các thông số phát hiện hack tốc độ và dịch chuyển xe: `Interval = 0.5`, `SpeedTolerance = 1.45`, `SpeedSlack = 15`, `MaxRise = 30`, `Teleport = 60`, `Strikes = 3`. |
 
 ---
 
-## 3. Configuration & Databases (Dữ liệu cấu hình & Skin)
+## Chi tiết Cơ chế Phát hiện của KOBALT AntiCheat
 
-| File | Kích thước | Vai trò & Chức năng |
-|---|---|---|
-| `WeaponConfig.ModuleScript.lua` | 56.4 KB | Toàn bộ cơ sở dữ liệu chỉ số súng (danh sách súng, dame gốc, tầm bắn, băng đạn, cỡ đạn, âm thanh). |
-| `WeaponFallback.ModuleScript.lua` | 5.2 KB | Thông số cấu hình mặc định dự phòng khi súng thiếu dữ liệu. |
-| `AttachmentConfig.ModuleScript.lua` | 13.4 KB | Cấu hình tất cả các phụ kiện: Nòng giảm thanh, tay cầm giảm giật, băng đạn mở rộng, kính ngắm. |
-| `DamageConfig.ModuleScript.lua` | 6.7 KB | Bảng hệ số nhân sát thương theo từng bộ phận cơ thể và lớp giáp. |
-| `LegendarySkins.ModuleScript.lua` | 3.7 KB | Cấu hình các skin súng cấp độ huyền thoại (hiệu ứng đặc biệt). |
-| `I_WeaponSkins_1.ModuleScript.lua` | 222.5 KB | Dữ liệu asset và hình ảnh skin súng phần 1. |
-| `I_WeaponSkins_2.ModuleScript.lua` | 83.0 KB | Dữ liệu asset và hình ảnh skin súng phần 2. |
-| `Weapon.ModuleScript.lua` | 20.6 KB | Giao diện HUD hiển thị slot súng, số lượng đạn hiện có/dự trữ, chế độ bắn. |
+1. **Kiểm tra Trạng thái Nhân vật (AnimGuard)**:
+   - Quét tất cả người chơi trong `workspace.Live`.
+   - Nếu phát hiện Animation ID thuộc nhóm rơi tự do (`FreeFall`, `FreeFallDive`) nhưng nhân vật không có thuộc tính `Deploy == "FreeFall"` -> Dừng animation ngay lập tức.
+   - Nếu phát hiện Animation ID thuộc nhóm hồi phục máu mà không đang sử dụng item hợp lệ -> Chặn và dừng animation.
+
+2. **Chấm điểm Gian lận (Suspicion Score - acText)**:
+   - Hệ thống đánh giá dựa trên `p96.s` (điểm vi phạm hiện tại) và `p96.m` (điểm vi phạm tối đa đạt tới).
+   - Nếu không có vi phạm: Trả về trạng thái `"anti-cheat clean"`.
+   - Nếu vượt ngưỡng: Hiển thị điểm số kèm nhãn vi phạm (reason code) trên thanh điều khiển của Staff.
+
+3. **Cơ chế Xử phạt Tự động & Thủ công**:
+   - Tự động đá khỏi trận (`AutoKick`) khi số lần vi phạm (strikes) vượt giới hạn.
+   - Quyền xử phạt qua RemoteFunction `AdminQuery` với các mức: 1 ngày, 7 ngày, 30 ngày hoặc cấm vĩnh viễn (PERM).
